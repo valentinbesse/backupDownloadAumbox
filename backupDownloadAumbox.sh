@@ -5,12 +5,12 @@
 LOGFILE=/var/log/backupDownloadAumbox.log
 ERRORLOGFILE=/var/log/backDownloadAumbox.error.log
 
-if [ ! -f "$LOGFILE"]; then
+if [ ! -f "$LOGFILE" ] ; then
     touch $LOGFILE
 fi
 
-if [ ! -f "$ERRORLOGFILE"]; then
+if [ ! -f "$ERRORLOGFILE" ] ; then
     touch $ERRORLOGFILE
 fi
 
-rsync -Pv -e 'ssh -p 1988' valentinbesse@aumbox.net:/home/valentinbesse/test /home/aumbox/ 1>>$LOGFILE 2>>$ERRORLOGFILE
+rsync -av --progress -e 'ssh -p 1988' valentinbesse@aumbox.net:/home/valentinbesse/Downloads/ /home/aumbox/Download/ 1>>$LOGFILE 2>>$ERRORLOGFILE
