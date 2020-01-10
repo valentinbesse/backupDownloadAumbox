@@ -2,15 +2,10 @@
 
 #! /user/bin/ksh
 
-LOGFILE=/var/log/backupDownloadAumbox.log
-ERRORLOGFILE=/var/log/backDownloadAumbox.error.log
+LOGFILE=/var/log/backupDownloadAumbox-$(date +%Y-%m-%d_%H:%M).log
+ERRORLOGFILE=/var/log/backDownloadAumbox-$(date +%Y-%m-%d_%H:%M).error.log
 
-if [ ! -f "$LOGFILE" ] ; then
-    touch $LOGFILE
-fi
-
-if [ ! -f "$ERRORLOGFILE" ] ; then
-    touch $ERRORLOGFILE
-fi
+echo "Start of backup process" > $LOGFILE
+echo "Start of backup process" > $ERRORLOGFILE
 
 rsync -av --progress -e 'ssh -p 1988' valentinbesse@aumbox.net:/home/valentinbesse/Downloads/ /home/aumbox/Download/ 1>>$LOGFILE 2>>$ERRORLOGFILE
